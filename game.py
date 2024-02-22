@@ -94,7 +94,6 @@ class Card(pygame.sprite.Sprite):
         
         
 class CardSys(pygame.sprite.Group):
-
     def __init__(self) -> None:
         super().__init__()
         # 被翻上来的卡牌
@@ -224,9 +223,7 @@ class CardSys(pygame.sprite.Group):
 class Windows:
     def __init__(self) -> None:
         pygame.init()
-        pygame.mixer.init()
         self.surface = pygame.display.set_mode(SIZE)
-        # pygame.display.set_icon(pygame.image.load(r'res\image\1.png'))
         self.clock = pygame.time.Clock()
         pygame.display.set_caption("卡牌匹配")
         self.quit = False
@@ -254,7 +251,6 @@ class Windows:
 
 
     def safe_quit(self):
-        pygame.mixer.quit()
         pygame.quit()
         sys.exit()
 
@@ -262,10 +258,6 @@ class Windows:
 class Game(Windows):
     def __init__(self) -> None:
         super().__init__()
-        # 正在展示卡牌
-        self.is_showing = True
-        # 开始展示的时间
-        self.show_time_lock = pygame.time.get_ticks()
         # 卡牌系统
         self.card_sys = CardSys()
 
