@@ -1,4 +1,3 @@
-from typing import List
 import pygame
 import sys
 import random
@@ -7,13 +6,14 @@ import random
 SIZE = WIDTH, HEIGHT = 600, 600
 
 
+# 生命值
 class HpSys:
     def __init__(self, card_sys: "CardSys") -> None:
         self._card_sys = card_sys
         # 生命值
         self.hp = 3
         # 生命值图像
-        self.images: List[pygame.Surface] = [
+        self.images: list[pygame.Surface] = [
             pygame.image.load(r"img\hp.png").convert_alpha()
             for _ in range(self.hp)
         ]
@@ -49,6 +49,7 @@ class HpSys:
             surface.blit(hp_image, (5 + i * (hp_image.get_width() + 5), 5))
 
 
+# 卡牌
 class Card(pygame.sprite.Sprite):
     def __init__(self, sys: "CardSys", id: int, topleft_pos: tuple[float, float]) -> None:
         super().__init__(sys)
@@ -92,7 +93,8 @@ class Card(pygame.sprite.Sprite):
         self.begin_disappear_time = pygame.time.get_ticks()
         self.image = self.image.copy()
         
-        
+
+# 卡牌管理系统  
 class CardSys(pygame.sprite.Group):
     def __init__(self) -> None:
         super().__init__()
@@ -101,7 +103,7 @@ class CardSys(pygame.sprite.Group):
         # 是不是在展示
         self.is_showing = True
         # 展示时间
-        self.display_COOL = 2 * 1000
+        self.display_COOL = 3 * 1000
         # 开始展示的时间
         self.begin_display_time = pygame.time.get_ticks()
         # 载入图像
@@ -220,6 +222,7 @@ class CardSys(pygame.sprite.Group):
         self.begin_display_time = pygame.time.get_ticks()
 
 
+# 基础game组件
 class Windows:
     def __init__(self) -> None:
         pygame.init()
@@ -254,7 +257,7 @@ class Windows:
         pygame.quit()
         sys.exit()
 
-
+# 游戏
 class Game(Windows):
     def __init__(self) -> None:
         super().__init__()
