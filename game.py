@@ -14,7 +14,7 @@ class HpSys:
         self.hp = 3
         # 生命值图像
         self.images: list[pygame.Surface] = [
-            pygame.image.load(r"img\hp.png").convert_alpha()
+            pygame.image.load(r"img/hp.png").convert_alpha()
             for _ in range(self.hp)
         ]
         # 开始失去生命的时间
@@ -59,7 +59,7 @@ class Card(pygame.sprite.Sprite):
         # 正面图像
         self.front_image: pygame.Surface = self._sys.images[self.id]
         #  背面图像
-        self.back_image: pygame.Surface = pygame.image.load(r"img\back.png").convert_alpha()
+        self.back_image: pygame.Surface = pygame.image.load(r"img/back.png").convert_alpha()
         # 点击判定
         self.rect: pygame.Rect = self.front_image.get_rect(topleft=topleft_pos)
         # image
@@ -155,7 +155,7 @@ class CardSys(pygame.sprite.Group):
     def _load_imgae(self):
         # 图像
         self.images: list[pygame.Surface] = [
-            pygame.image.load(r"img\font.png").convert_alpha()
+            pygame.image.load(r"img/font.png").convert_alpha()
             for _ in range(3)
         ]
         # 加载图像
